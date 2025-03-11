@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: techweb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: techweb
+  template:
+    metadata:
+      labels:
+        app: techweb
+    spec:
+      containers:
+      - name: techweb
+        image: nexusameer/techweb:latest
+        ports:
+        - containerPort: 8005
