@@ -7,7 +7,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: devsearch.com
+  - host: devsearch.nexus
     http:
       paths:
       - path: /
@@ -17,7 +17,7 @@ spec:
             name: devsearch-service
             port:
               number: 80
-  - host: portfolio.com
+  - host: portfolio.nexus
     http:
       paths:
       - path: /
@@ -27,7 +27,7 @@ spec:
             name: portfolio-service
             port:
               number: 80
-  - host: techweb.com
+  - host: techweb.nexus
     http:
       paths:
       - path: /
