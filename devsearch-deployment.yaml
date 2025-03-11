@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devsearch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devsearch
+  template:
+    metadata:
+      labels:
+        app: devsearch
+    spec:
+      containers:
+      - name: devsearch
+        image: nexusameer/devsearch:latest
+        ports:
+        - containerPort: 8004
