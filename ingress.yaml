@@ -7,7 +7,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: devsearch.nexus
+  - host: devsearch.local
     http:
       paths:
       - path: /
@@ -17,7 +17,7 @@ spec:
             name: devsearch-service
             port:
               number: 80
-  - host: portfolio.nexus
+  - host: portfolio.local
     http:
       paths:
       - path: /
@@ -27,7 +27,7 @@ spec:
             name: portfolio-service
             port:
               number: 80
-  - host: techweb.nexus
+  - host: techweb.local
     http:
       paths:
       - path: /
@@ -35,5 +35,35 @@ spec:
         backend:
           service:
             name: techweb-service
+            port:
+              number: 80
+  - host: gym.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: gym-service
+            port:
+              number: 80
+  - host: myblog.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: myblog-service
+            port:
+              number: 80
+  - host: studybud.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: studybud-service
             port:
               number: 80

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myblog
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myblog
+  template:
+    metadata:
+      labels:
+        app: myblog
+    spec:
+      containers:
+      - name: myblog
+        image: nexusameer/myblog:latest
+        ports:
+        - containerPort: 8004

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: studybud
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: studybud
+  template:
+    metadata:
+      labels:
+        app: studybud
+    spec:
+      containers:
+      - name: studybud
+        image: nexusameer/studybud:latest
+        ports:
+        - containerPort: 8003
