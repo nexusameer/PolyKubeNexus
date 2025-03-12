@@ -1,103 +1,55 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: apps-ingress
+  name: ingress-service
+  namespace: default
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
-    nginx.ingress.kubernetes.io/proxy-buffering: "on"
 spec:
-  ingressClassName: nginx
+  ingressClassName: nginx  # Adjust this if you have a custom class
   rules:
-  - host: 48.216.151.143.nip.io
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: landing-page-service
-            port:
-              number: 80
-
-      # Static files for devsearch
-      - path: /devsearch/static(/|$)(.*)
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: devsearch-service
-            port:
-              number: 80
-      - path: /devsearch(/|$)(.*)
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: devsearch-service
-            port:
-              number: 80
-
-      # Static files for techweb
-      - path: /techweb/static(/|$)(.*)
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: techweb-service
-            port:
-              number: 80
-      - path: /techweb(/|$)(.*)
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: techweb-service
-            port:
-              number: 80
-
-      # Static files for studybud
-      - path: /studybud/static(/|$)(.*)
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: studybud-service
-            port:
-              number: 80
-      - path: /studybud(/|$)(.*)
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: studybud-service
-            port:
-              number: 80
-
-      # Static files for gym
-      - path: /gym/static(/|$)(.*)
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: gym-service
-            port:
-              number: 80
-      - path: /gym(/|$)(.*)
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: gym-service
-            port:
-              number: 80
-
-      # Static files for myblog
-      - path: /myblog/static(/|$)(.*)
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: myblog-service
-            port:
-              number: 80
-      - path: /myblog(/|$)(.*)
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: myblog-service
-            port:
-              number: 80
+    - host: 48.216.151.143.nip.io
+      http:
+        paths:
+          - path: /()(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: landing-page
+                port:
+                  number: 80
+          - path: /devsearch(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: devsearch
+                port:
+                  number: 8004
+          - path: /techweb(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: gym
+                port:
+                  number: 8002
+          - path: /portfolio(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: portfolio
+                port:
+                  number: 8000
+          - path: /socialapp(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: socialapp
+                port:
+                  number: 8001
+          - path: /blog(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: blog
+                port:
+                  number: 8003
