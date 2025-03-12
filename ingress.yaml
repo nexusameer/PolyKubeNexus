@@ -4,6 +4,10 @@ metadata:
   name: apps-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+    nginx.ingress.kubernetes.io/proxy-buffering: "on"
 spec:
   ingressClassName: nginx
   rules:
@@ -17,36 +21,81 @@ spec:
             name: landing-page-service
             port:
               number: 80
-      - path: /devsearch(/|$)(.*)
-        pathType: Prefix
+
+      # Static files for devsearch
+      - path: /devsearch/static(/|$)(.*)
+        pathType: ImplementationSpecific
         backend:
           service:
             name: devsearch-service
             port:
               number: 80
-      - path: /techweb(/|$)(.*)
-        pathType: Prefix
+      - path: /devsearch(/|$)(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: devsearch-service
+            port:
+              number: 80
+
+      # Static files for techweb
+      - path: /techweb/static(/|$)(.*)
+        pathType: ImplementationSpecific
         backend:
           service:
             name: techweb-service
             port:
               number: 80
-      - path: /studybud(/|$)(.*)
-        pathType: Prefix
+      - path: /techweb(/|$)(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: techweb-service
+            port:
+              number: 80
+
+      # Static files for studybud
+      - path: /studybud/static(/|$)(.*)
+        pathType: ImplementationSpecific
         backend:
           service:
             name: studybud-service
             port:
               number: 80
-      - path: /gym(/|$)(.*)
-        pathType: Prefix
+      - path: /studybud(/|$)(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: studybud-service
+            port:
+              number: 80
+
+      # Static files for gym
+      - path: /gym/static(/|$)(.*)
+        pathType: ImplementationSpecific
         backend:
           service:
             name: gym-service
             port:
               number: 80
+      - path: /gym(/|$)(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: gym-service
+            port:
+              number: 80
+
+      # Static files for myblog
+      - path: /myblog/static(/|$)(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: myblog-service
+            port:
+              number: 80
       - path: /myblog(/|$)(.*)
-        pathType: Prefix
+        pathType: ImplementationSpecific
         backend:
           service:
             name: myblog-service
