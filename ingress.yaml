@@ -3,14 +3,13 @@ kind: Ingress
 metadata:
   name: apps-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2  # Strip the subpath before forwarding
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   ingressClassName: nginx
   rules:
   - host: 48.216.151.143.nip.io
     http:
       paths:
-      # Landing page as default
       - path: /
         pathType: Prefix
         backend:
@@ -18,17 +17,13 @@ spec:
             name: landing-page-service
             port:
               number: 80
-
-      # DevSearch App
       - path: /devsearch(/|$)(.*)
         pathType: Prefix
         backend:
           service:
             name: devsearch-service
-            port: 
+            port:
               number: 80
-
-      # TechWeb App
       - path: /techweb(/|$)(.*)
         pathType: Prefix
         backend:
@@ -36,8 +31,6 @@ spec:
             name: techweb-service
             port:
               number: 80
-
-      # StudyBud App
       - path: /studybud(/|$)(.*)
         pathType: Prefix
         backend:
@@ -45,8 +38,6 @@ spec:
             name: studybud-service
             port:
               number: 80
-
-      # Gym App
       - path: /gym(/|$)(.*)
         pathType: Prefix
         backend:
@@ -54,8 +45,6 @@ spec:
             name: gym-service
             port:
               number: 80
-
-      # MyBlog App
       - path: /myblog(/|$)(.*)
         pathType: Prefix
         backend:
