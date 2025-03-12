@@ -3,17 +3,52 @@ kind: Ingress
 metadata:
   name: apps-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   ingressClassName: nginx
   rules:
-  - host: devsearch.local
+  - host: 48.216.151.143.nip.io
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
+            name: landing-page-service
+            port:
+              number: 80
+      - path: /devsearch(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
             name: devsearch-service
+            port:
+              number: 80
+      - path: /techweb(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: techweb-service
+            port:
+              number: 80
+      - path: /studybud(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: studybud-service
+            port:
+              number: 80
+      - path: /gym(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: gym-service
+            port:
+              number: 80
+      - path: /myblog(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: myblog-service
             port:
               number: 80
