@@ -1,55 +1,61 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-service
-  namespace: default
+  name: apps-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/rewrite-target: /$2 # This annotation is still used, but depends on the path.
 spec:
-  ingressClassName: nginx  # Adjust this if you have a custom class
+  ingressClassName: nginx
   rules:
-    - host: 48.216.151.143.nip.io
-      http:
-        paths:
-          - path: /()(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: landing-page
-                port:
-                  number: 80
-          - path: /devsearch(/|$)(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: devsearch
-                port:
-                  number: 8004
-          - path: /techweb(/|$)(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: gym
-                port:
-                  number: 8002
-          - path: /portfolio(/|$)(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: portfolio
-                port:
-                  number: 8000
-          - path: /socialapp(/|$)(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: socialapp
-                port:
-                  number: 8001
-          - path: /blog(/|$)(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: blog
-                port:
-                  number: 8003
+  - host: 48.216.151.143.nip.io
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: landing-page-service
+            port:
+              number: 80
+      - path: /devsearch
+        pathType: Prefix
+        backend:
+          service:
+            name: devsearch-service
+            port:
+              number: 80
+      - path: /techweb
+        pathType: Prefix
+        backend:
+          service:
+            name: techweb-service
+            port:
+              number: 80
+      - path: /studybud
+        pathType: Prefix
+        backend:
+          service:
+            name: studybud-service
+            port:
+              number: 80
+      - path: /gym
+        pathType: Prefix
+        backend:
+          service:
+            name: gym-service
+            port:
+              number: 80
+      - path: /myblog
+        pathType: Prefix
+        backend:
+          service:
+            name: myblog-service
+            port:
+              number: 80
+      - path: /portfolio
+        pathType: Prefix
+        backend:
+          service:
+            name: portfolio-service
+            port:
+              number: 80

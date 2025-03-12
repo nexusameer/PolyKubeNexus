@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: landing-page
-        image: nexusameer/my-landing-page:v2
+        image: nexusameer/my-landing-page:v3
         imagePullPolicy: Always
         ports:
         - containerPort: 80
