@@ -7,63 +7,49 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: devsearch.local
+  - host: 48.216.151.143.nip.io
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: devsearch-service
+            name: landing-page-service
             port:
+              number: 80 
+      - path: /devsearch
+        pathType: Prefix
+        backend:
+          service:
+            name: devsearch-service
+            port: 
               number: 80
-  - host: portfolio.local
-    http:
-      paths:
-      - path: /
+      - path: /techweb
         pathType: Prefix
         backend:
           service:
             name: portfolio-service
             port:
               number: 80
-  - host: techweb.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: techweb-service
-            port:
-              number: 80
-  - host: gym.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: gym-service
-            port:
-              number: 80
-  - host: myblog.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: myblog-service
-            port:
-              number: 80
-  - host: studybud.local
-    http:
-      paths:
-      - path: /
+      - path: /studybud
         pathType: Prefix
         backend:
           service:
             name: studybud-service
             port:
               number: 80
+      - path: /gym
+        pathType: Prefix
+        backend:
+          service:
+            name: gym-service
+            port:
+              number: 80
+      - path: /myblog
+        pathType: Prefix
+        backend:
+          service:
+            name: myblog-service
+            port:
+              number: 80
+      

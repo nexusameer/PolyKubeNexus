@@ -11,6 +11,8 @@ kubectl apply -f myblog-deployment.yaml
 kubectl apply -f myblog-service.yaml
 kubectl apply -f studybud-deployment.yaml
 kubectl apply -f studybud-service.yaml
+kubectl apply -f landingpage-deployment.yaml
+kubectl apply -f landingpage-service.yaml
 
 
 kubectl apply -f ingress.yaml
